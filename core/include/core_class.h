@@ -1,4 +1,4 @@
-// Class design proposal for the core part of the game  
+// Classes for core part of the game  
 
 #ifndef CORE_CLASS
 #define CORE_CLASS
@@ -27,7 +27,7 @@ class Grid
             std::vector<Block> column (ncol);
             for(unsigned int i=0; i<nrow; ++i)
             {
-                matrix[i]=column;
+                matrix.push_back(column);
             }  
         } 
 
