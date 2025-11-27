@@ -5,6 +5,8 @@
 
 #include <vector>
 
+enum class Input{down, left, right, direct_rotate, indirect_rotate}
+
 class Block
 {
     public :
@@ -22,21 +24,44 @@ class Block
 class Grid
 {   
     public :
-        Grid(unsigned int nrow, unsigned int ncol) 
-        {
-            std::vector<Block> column (ncol);
+
+        // index (0,0) : case en bas à gauche
+
+        Grid(unsigned int nrow=1, unsigned int ncol=1) 
+        {   
+            std::vector<Block*>  column (ncol, nullptr);
             for(unsigned int i=0; i<nrow; ++i)
             {
                 matrix.push_back(column);
+                is_full_rows.push_back(false);
             }  
         } 
 
-        Block operator()(unsigned int row, unsigned int column) const {return matrix[row][column];} 
-        Block& operator()(unsigned int row, unsigned int column){return matrix[row][column];} 
+        Block* operator()(unsigned int row, unsigned int column) const {return matrix[row][column];} 
+        Block*& operator()(unsigned int row, unsigned int column){return matrix[row][column];} 
+
+        unsigned int get_row_size() const {return matrix.size()}
+        unsigned int get_column_size() const {return matrix[0].size()}
+
+        std::vector<unsigned int> get_full_rows() const
+        {
+            std::vector<unsigned int> full_rows;
+            {
+                for(unsigned int i=0; i<is_full_rows.size(); ++i)
+                    if(is_full_rows[i]) full_rows.push_back(i);
+            }
+            return full_rows;
+        }
+
+        void move_piece(Piece piece, Input input);
 
     private :
-        std::vector< std::vector<Block> > matrix;
+        std::vector< std::vector<Block*> > matrix;
+        std::vector<bool> is_full_rows;
+
+        void move_block(Block block, Input input);
 };
 
+//matrix{std::vector< std::vector<Block*>(ncol, nullptr)> (nrow)}, is_full_row{std::vector<bool> }
 
 #endif
