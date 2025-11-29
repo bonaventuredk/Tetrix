@@ -87,3 +87,72 @@ std::ostream& operator<<(std::ostream o, Grid board)
     o << print_board;
     return o;
 }
+
+
+//For Piece class 
+
+Piece::Piece(PieceType type, unsigned int pivotRow, unsigned int pivotCol)
+: _type(type), _pivot_idx(0)
+{
+    initializeBlocks(pivotRow, pivotCol);
+}
+
+void Piece::initializeBlocks(unsigned int pivotRow, unsigned int pivotCol)
+{
+    _blocks.clear();
+
+    switch(_type)
+    {
+        case PieceType::I:
+            _blocks = { {0,0}, {-1,0}, {1,0}, {2,0} };
+            break;
+        case PieceType::O:
+            _blocks = { {0,0}, {0,1}, {1,0}, {1,1} };
+            break;
+        case PieceType::T:
+            _blocks = { {0,0}, {0,-1}, {0,1}, {1,0} };
+            break;
+        case PieceType::J:
+            _blocks = { {0,0}, {-1,0}, {1,0}, {1,1} };
+            break;
+        case PieceType::L:
+            _blocks = { {0,0}, {-1,0}, {1,0}, {1,-1} };
+            break;
+        case PieceType::S:
+            _blocks = { {0,0}, {0,1}, {1,0}, {1,-1} };
+            break;
+        case PieceType::Z:
+            _blocks = { {0,0}, {0,-1}, {1,0}, {1,1} };
+            break;
+    }
+
+    int dr = static_cast<int>(pivotRow);
+    int dc = static_cast<int>(pivotCol);
+
+    if(dr > 0) move(Move::down, dr);
+    else if(dr < 0) move(Move::up, -dr);
+
+    if(dc > 0) move(Move::right, dc);
+    else if(dc < 0) move(Move::left, -dc);
+}
+
+
+void Piece::move(Move m, unsigned int length)
+{
+    //
+}
+
+void Piece::rotateDirect()
+{
+    //
+}
+
+void Piece::rotateIndirect()
+{
+    //
+}
+
+void Piece::setPivotPosition(unsigned int row, unsigned int col)
+{
+    //
+}
