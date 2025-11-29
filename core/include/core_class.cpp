@@ -139,9 +139,21 @@ void Piece::initializeBlocks(unsigned int pivotRow, unsigned int pivotCol)
 
 void Piece::move(Move m, unsigned int length)
 {
-    //
-}
+    int dr = 0, dc = 0;
+    switch(m)
+    {
+        case Move::left:  dc = -static_cast<int>(length); break;
+        case Move::right: dc = static_cast<int>(length);  break;
+        case Move::down:  dr = static_cast<int>(length);  break;
+        case Move::up:    dr = -static_cast<int>(length); break;
+        default: break;
+    }
 
+    for(auto &b : _blocks) {
+        b.row() += dr;
+        b.column() += dc;
+    }
+}
 void Piece::rotateDirect()
 {
     //
