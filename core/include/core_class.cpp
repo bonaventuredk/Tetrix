@@ -1,5 +1,7 @@
 
+#include <iostream>
 #include <vector>
+#include <string>
 
 #include "core_class.h"
 
@@ -17,7 +19,10 @@ void Block::move(Move direction)
                 
         case Move::left:
             --_row;
+        default :
+        ;
     }
+    return;
 }
 
 std::vector<unsigned int> Grid::get_full_rows() const 
@@ -50,4 +55,21 @@ void Grid::clear_full_rows()
             (*this)(row, column).is_full()=false;
         }
     }
+    return;
+}
+
+std::ostream& operator<<(std::ostream o, Grid board)
+{
+    std::string print_board;
+    for(unsigned int row=0; row<board.row_size(); ++row)
+    {
+        for(unsigned int column=0; column<board.column_size(); ++column)
+        {
+            if(board(row, column).is_full()) print_board+='O';
+            else print_board+='.';
+        }
+        print_board+='\n';
+    }
+    o << print_board;
+    return o;
 }

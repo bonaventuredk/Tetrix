@@ -5,7 +5,7 @@
 
 #include <vector>
 
-enum class Move{up, down, left, right};
+enum class Move{up, down, left, right, direct_rotation, indirect_rotation};
 
 class Block
 {
@@ -47,6 +47,7 @@ class Grid
             {
                 matrix.push_back(column);
             }  
+            return;
         } 
 
         Cell operator()(unsigned int row, unsigned int column) const {return matrix[row][column];} 
@@ -56,7 +57,6 @@ class Grid
         unsigned int column_size() const {return matrix[0].size();}
 
         void clear_full_rows();
-        
 
     private :
         std::vector< std::vector<Cell> > matrix;
