@@ -5,7 +5,7 @@
 
 #include <vector>
 
-enum class Input{down, left, right, direct_rotate, indirect_rotate}
+enum class Move{up, down, left, right};
 
 class Block
 {
@@ -15,6 +15,8 @@ class Block
         unsigned int& row() {return _row;}
         unsigned int column() const {return _column;} 
         unsigned int& column() {return _column;}
+
+        void move(Move direction);
 
     private :
         unsigned int _row;
@@ -40,8 +42,8 @@ class Grid
         Block* operator()(unsigned int row, unsigned int column) const {return matrix[row][column];} 
         Block*& operator()(unsigned int row, unsigned int column){return matrix[row][column];} 
 
-        unsigned int get_row_size() const {return matrix.size()}
-        unsigned int get_column_size() const {return matrix[0].size()}
+        unsigned int get_row_size() const {return matrix.size();}
+        unsigned int get_column_size() const {return matrix[0].size();}
 
         std::vector<unsigned int> get_full_rows() const
         {
