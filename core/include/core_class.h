@@ -66,7 +66,7 @@ public:
     void move(Move m, unsigned int length = 1);
     void rotateDirect();   
     void rotateIndirect();
-    void setPivotPosition(unsigned int row, unsigned int col);
+    
 
 private:
     PieceType _type;
