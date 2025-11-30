@@ -173,7 +173,3 @@ void Piece::rotateIndirect()
     //
 }
 
-void Piece::setPivotPosition(unsigned int row, unsigned int col)
-{
-    //
-}
