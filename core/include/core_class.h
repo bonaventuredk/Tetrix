@@ -37,7 +37,7 @@ class Grid
 {   
     public :
 
-        // index (0,0) : case en bas à gauche
+        // index (0,0) : case en haut à gauche
         Grid(unsigned int nrow=1, unsigned int ncol=1);
         Cell operator()(unsigned int row, unsigned int column) const {return matrix[row][column];} 
         Cell& operator()(unsigned int row, unsigned int column){return matrix[row][column];} 
