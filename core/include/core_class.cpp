@@ -13,16 +13,18 @@ void Block::move(Move direction, unsigned int length)
         {
             case Move::up :
                 ++_column;
+                break;
             case Move::down :
                 --_column;
-
+                break;
             case Move::right :
                 ++_row;
-                    
+                break;
             case Move::left:
                 --_row;
+                break;
             default :
-            ;
+                break;
         }
     }
     return;
@@ -41,7 +43,7 @@ Grid::Grid(unsigned int nrow=1, unsigned int ncol=1)
 std::vector<unsigned int> Grid::get_full_rows() const 
 {
     std::vector<unsigned int> full_rows;
-    bool check;
+     bool check;
     for(unsigned int row=0; row<(*this).row_size(); ++row)
     {   
         check=true;
